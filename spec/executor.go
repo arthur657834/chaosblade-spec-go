@@ -46,7 +46,7 @@ type ExpModel struct {
 	// Categories
 	ActionCategories []string `json:"categories,omitempty"`
 
-	ActionProcessHang bool     `yaml:"actionProcessHang"`
+	ActionProcessHang bool `yaml:"actionProcessHang"`
 }
 
 // ExpExecutor defines the ExpExecutor interface
@@ -56,6 +56,9 @@ type Executor interface {
 
 	// Exec is used to execute the experiment
 	Exec(uid string, ctx context.Context, model *ExpModel) *Response
+
+	// Check experiment parameter before execute
+	Check(uid string, ctx context.Context, model *ExpModel) *Response
 
 	// SetChannel
 	SetChannel(channel Channel)
